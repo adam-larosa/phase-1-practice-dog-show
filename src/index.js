@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function fetchDogs() {
-    fetch(dogsURL).then(resp => resp.json()).then(response => {
-        response.forEach(dog => renderDog(dog))
+    fetch(dogsURL)
+    .then(resp => resp.json())
+    .then(arrayOfDogs => {
+        arrayOfDogs.forEach(dog => renderDog(dog))
     })
 }
 
