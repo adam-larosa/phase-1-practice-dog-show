@@ -8,16 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function fetchDogs() {
     fetch(dogsURL).then(resp => resp.json()).then(response => {
-        response.forEach(dog => {
-            renderDog(dog)
-        })
+        response.forEach(dog => renderDog(dog))
     })
 }
 
 const renderDog = (dog) => {
-    newPotato = tableRowMaker(dog)
-    hotPotato = addDogToElement(dog, newPotato)
-    tableContainer.append( hotPotato )
+    dogElement = tableRowMaker(dog)
+    readyToAppendElement = addDogToElement(dog, dogElement)
+    tableContainer.append( readyToAppendElement )
 }
 
 function tableRowMaker(dog) {
