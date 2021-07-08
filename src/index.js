@@ -10,7 +10,8 @@ function fetchDogs() {
     fetch(dogsURL).then(resp => resp.json()).then(response => {
         response.forEach(dog => {
             newPotato = tableRowMaker(dog)
-            tableContainer.append( newPotato )
+            hotPotato = addDogToElement(dog, newPotato)
+            tableContainer.append( hotPotato )
         })
     })
 }
@@ -18,11 +19,8 @@ function fetchDogs() {
 function tableRowMaker(dog) {
     const tr = document.createElement('tr')
     const tdName = document.createElement('td')
-    tdName.textContent = dog.name
     const tdBreed = document.createElement('td')
-    tdBreed.textContent = dog.breed
     const tdSex =  document.createElement('td')
-    tdSex.textContent = dog.sex
     const tdButton = document.createElement('td')
     const button = document.createElement('button')
     button.style.width = "100%"
@@ -32,6 +30,16 @@ function tableRowMaker(dog) {
     tr.append(tdName, tdBreed, tdSex, tdButton)
     return tr
 }
+
+const addDogToElement = (dog, element) => {
+    const elements = element.querySelectorAll('td')
+    elements[0].textContent = dog.name
+    elements[1].textContent = dog.breed
+    elements[2].textContent = dog.sex
+    return element
+}
+
+
 
 function buttonClick(dog) {
     const form = document.getElementById('dog-form')
